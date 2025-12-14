@@ -33,9 +33,6 @@ public class RegisterColaboradorValidator : AbstractValidator<RequestRegisterCol
         RuleFor(x => x.Endereco.CEP)
             .NotEmpty().WithMessage("CEP é obrigatório.")
             .Matches(@"^\d{8}$").WithMessage("CEP deve conter exatamente 8 dígitos numéricos");
-        
-
-
     }
     
     private async Task<bool> ValidarCepExiste(string cep, CancellationToken cancellationToken)

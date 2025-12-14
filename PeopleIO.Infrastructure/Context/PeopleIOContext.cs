@@ -66,6 +66,13 @@ public class PeopleIoContext : DbContext
                 doc.Property(d => d.DataUpload).HasColumnName("ArquivoResidenciaDataUpload");
                 doc.Property(d => d.TipoMime).HasColumnName("ArquivoResidenciaTipoMime");
             });
+            entity.OwnsOne(c => c.Curriculo, doc =>
+            {
+                doc.Property(d => d.NomeArquivo).HasColumnName("NomeArquivoCurriculo");
+                doc.Property(d => d.Url).HasColumnName("ArquivoCurriculoURL");
+                doc.Property(d => d.DataUpload).HasColumnName("ArquivoCurriculoDataUpload");
+                doc.Property(d => d.TipoMime).HasColumnName("ArquivoCurriculoTipoMime");
+            });
         });
     }
 }

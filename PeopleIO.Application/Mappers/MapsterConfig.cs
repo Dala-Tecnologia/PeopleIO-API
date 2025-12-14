@@ -18,6 +18,7 @@ public static class MapsterConfig
             .Map(dest => dest.Departamento, src => src.Departamento)
             .Map(dest => dest.DataAdmissao, src => src.DataAdmissao)
             .Map(dest => dest.Nome, src => src.Nome)
+            .Map(dest => dest.NomeSocial, src => src.NomeSocial)
             .Map(dest => dest.CPF, src => src.CPF)
             .Map(dest => dest.DataNascimento, src => src.DataNascimento)
             .Map(dest => dest.Email, src => src.Email)

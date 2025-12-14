@@ -10,6 +10,7 @@ public class Colaborador : Pessoa
     public Documento? ArquivoCNH { get; set; }
     public Documento? ArquivoCPF { get; set; }
     public Documento? ArquivoComprovanteResidencia { get; set; }
+    public Documento? Curriculo { get; set; }
     public bool Ativo { get; set; } = true;
     
 }

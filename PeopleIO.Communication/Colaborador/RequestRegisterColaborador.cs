@@ -2,6 +2,7 @@
 
 public record RequestRegisterColaborador(
     string Nome,
+    string NomeSocial,
     string CPF,
     DateTime DataNascimento,
     string Email,
@@ -36,5 +37,6 @@ public record RequestRegisterColaborador(
     DocumentoDTO? ArquivoRG,
     DocumentoDTO? ArquivoCNH,
     DocumentoDTO? ArquivoCPF,
-    DocumentoDTO? ArquivoComprovanteResidencia 
+    DocumentoDTO? ArquivoComprovanteResidencia,
+    DocumentoDTO? Curriculo
 );
