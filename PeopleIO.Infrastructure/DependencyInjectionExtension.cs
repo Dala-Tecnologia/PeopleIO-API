@@ -23,7 +23,6 @@ public static class DependencyInjectionExtension
     private static void AddDatabase(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration["PEOPLEIO-CONN-STRING-PGSQL"];
-        Console.WriteLine("Database connection string: " + connectionString);
         services.AddDbContext<PeopleIoContext>(opt => opt.UseNpgsql(connectionString));
     }
 }

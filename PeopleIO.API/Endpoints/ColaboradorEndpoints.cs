@@ -12,7 +12,8 @@ public static class ColaboradorEndpoints
     public static void MapColaboradorEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/v1/colaboradores")
-            .WithTags("Colaboradores");
+            .WithTags("Colaboradores")
+            .RequireAuthorization();
 
         group.MapGet("", (IGetAllColaboradoresService service) => Results.Ok(service.Execute()));
         group.MapGet("/{id:guid}", async (Guid id, IGetColaboradorByIdService service) =>
