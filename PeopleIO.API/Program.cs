@@ -57,12 +57,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             {
                 var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
                 logger.LogError("Authentication failed: {Message}", context.Exception.Message);
+
+                if (context.Exception is SecurityTokenInvalidIssuerException issuerEx)
+                {
+                    logger.LogError("Issuer validation failed. Token Issuer: '{Issuer}'. Expected: {Expected}", 
+                        issuerEx.InvalidIssuer, 
+                        string.Join(", ", options.TokenValidationParameters.ValidIssuers));
+                }
+
+                if (context.Exception is SecurityTokenInvalidAudienceException audEx)
+                {
+                    logger.LogError("Audience validation failed. Token Audience: '{Audience}'. Expected: {Expected}", 
+                        audEx.InvalidAudience, 
+                        string.Join(", ", options.TokenValidationParameters.ValidAudiences));
+                }
+
                 return Task.CompletedTask;
             },
             OnTokenValidated = context =>
             {
                 var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
-                logger.LogInformation("Token validated. User: {User}", context.Principal?.Identity?.Name);
+                var audience = context.Principal?.FindFirst("aud")?.Value;
+                
+                logger.LogInformation("Token validated successfully. User: {User}, Issuer: {Issuer}, Audience: {Audience}", 
+                    context.Principal?.Identity?.Name,
+                    context.SecurityToken.Issuer,
+                    audience);
                 return Task.CompletedTask;
             },
             OnChallenge = context =>
