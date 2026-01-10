@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using PeapleIO.API.Endpoints;
 using PeopleIO.Application;
 using PeopleIO.Infrastructure;
@@ -36,7 +37,41 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.Authority = "https://peopleioauth.ciamlogin.com/d86016d0-ba89-4553-a9ce-80757be65a93/v2.0"; 
-        options.Audience = builder.Configuration["AzureAd:Audience"]!; 
+        
+        var audience = builder.Configuration["AzureAd:Audience"]!;
+        options.Audience = audience;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidAudiences = new[] { audience, $"api://{audience}" },
+            ValidIssuers = new[] 
+            { 
+                "https://peopleioauth.ciamlogin.com/d86016d0-ba89-4553-a9ce-80757be65a93/v2.0",
+                "https://d86016d0-ba89-4553-a9ce-80757be65a93.ciamlogin.com/d86016d0-ba89-4553-a9ce-80757be65a93/v2.0"
+            }
+        };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                logger.LogError("Authentication failed: {Message}", context.Exception.Message);
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                logger.LogInformation("Token validated. User: {User}", context.Principal?.Identity?.Name);
+                return Task.CompletedTask;
+            },
+            OnChallenge = context =>
+            {
+                var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                logger.LogWarning("OnChallenge - 401 Triggered. Error: {Error}, Description: {ErrorDescription}", context.Error, context.ErrorDescription);
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorizationBuilder();
