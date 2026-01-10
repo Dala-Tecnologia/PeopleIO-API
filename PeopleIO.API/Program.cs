@@ -48,11 +48,12 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
-app.UseAuthentication(); 
-app.UseAuthorization(); 
 
 app.UseHttpsRedirection();
 app.UseCors(origins);
+
+app.UseAuthentication(); 
+app.UseAuthorization();
 
 app.MapColaboradorEndpoints();
 
