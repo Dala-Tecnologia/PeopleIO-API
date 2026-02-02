@@ -1,6 +1,6 @@
 ﻿namespace PeopleIO.Communication;
 
-public record RequestRegisterColaborador(
+public record RequestRegisterCandidato(
     string Nome,
     string NomeSocial,
     string CPF,

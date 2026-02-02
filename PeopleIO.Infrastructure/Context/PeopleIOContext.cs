@@ -8,14 +8,14 @@ public class PeopleIoContext : DbContext
     public PeopleIoContext(DbContextOptions<PeopleIoContext> options)
         : base(options) { }
 
-    public DbSet<Colaborador> Colaborador { get; set; }
+    public DbSet<Candidato> Candidato { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
-        modelBuilder.Entity<Colaborador>(entity =>
+        modelBuilder.Entity<Candidato>(entity =>
         {
-            entity.ToTable("colaborador");
+            entity.ToTable("candidato");
 
             entity.HasKey(c => c.Id);
             

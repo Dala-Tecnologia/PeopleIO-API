@@ -11,7 +11,7 @@ public static class MapsterConfig
         TypeAdapterConfig<EnderecoRequest, Endereco>
             .NewConfig();
         
-        TypeAdapterConfig<RequestRegisterColaborador, Colaborador>
+        TypeAdapterConfig<RequestRegisterCandidato, Candidato>
             .NewConfig()
             .Map(dest => dest.Endereco, src => src.Endereco.Adapt<Endereco>())
             .Map(dest => dest.Cargo, src => src.Cargo)

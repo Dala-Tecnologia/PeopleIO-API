@@ -17,7 +17,7 @@ public static class DependencyInjectionExtension
 
     private static void AddRepository(this IServiceCollection services)
     {
-        services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
+        services.AddScoped<ICandidatoRepository, CandidatoRepository>();
         
     }
     private static void AddDatabase(IServiceCollection services, IConfiguration configuration)

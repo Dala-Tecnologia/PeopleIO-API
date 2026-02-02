@@ -107,9 +107,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(origins);
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapColaboradorEndpoints();
+app.MapCandidatoEndpoints();
 
 app.Run();
