@@ -2,11 +2,11 @@
 using PeopleIO.Communication;
 using PeopleIO.Exceptions;
 
-namespace PeopleIO.Application.Services.Colaborador.Register;
+namespace PeopleIO.Application.Services.Candidato.Register;
 
-public class RegisterColaboradorValidator : AbstractValidator<RequestRegisterColaborador>
+public class RegisterCandidatoValidator : AbstractValidator<RequestRegisterCandidato>
 {
-    public RegisterColaboradorValidator()
+    public RegisterCandidatoValidator()
     {
         RuleFor(x => x.Nome)
             .NotEmpty()

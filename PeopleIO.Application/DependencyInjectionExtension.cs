@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using PeopleIO.Application.Mappers;
 using PeopleIO.Application.Services;
-using PeopleIO.Application.Services.Colaborador.Delete;
-using PeopleIO.Application.Services.Colaborador.GetAll;
-using PeopleIO.Application.Services.Colaborador.GetById;
-using PeopleIO.Application.Services.Colaborador.Register;
+using PeopleIO.Application.Services.Candidato.GetAll;
+using PeopleIO.Application.Services.Candidato.GetById;
+using PeopleIO.Application.Services.Candidato.Delete;
+using PeopleIO.Application.Services.Candidato.GetAll;
+using PeopleIO.Application.Services.Candidato.Register;
 
 namespace PeopleIO.Application;
 
@@ -20,10 +20,9 @@ public static class DependencyInjectionExtension
     {
         MapsterConfig.RegisterMappings();
         services.AddSingleton<BlobStorageService>();
-        services.AddScoped<IRegisterColaboradorService, RegisterColaboradorService>();
-        services.AddScoped<IGetAllColaboradoresService, GetAllColaboradoresService>();
-        services.AddScoped<IGetColaboradorByIdService, GetColaboradorByIdService>();
-        services.AddScoped<IRemoveColaboradorService, RemoveColaboradorService>();
-
+        services.AddScoped<IRegisterCandidatoService, RegisterCandidatoService>();
+        services.AddScoped<IGetAllCandidatosService, GetAllCandidatosService>();
+        services.AddScoped<IGetCandidatoByIdService, GetCandidatoByIdService>();
+        services.AddScoped<IRemoveCandidatoService, RemoveCandidatoService>();
     }
 }

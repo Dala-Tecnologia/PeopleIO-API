@@ -1,6 +1,6 @@
 ﻿namespace PeopleIO.Domain.Entity;
 
-public class Colaborador : Pessoa
+public class Candidato : Pessoa
 {
     public string? Cargo { get; set; }
     public string? Departamento { get; set; }

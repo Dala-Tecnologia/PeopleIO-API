@@ -1,6 +1,6 @@
 ﻿namespace PeopleIO.Communication;
 
-public record ColaboradorResponse(
+public record CandidatoResponse(
     Guid Id,
     string Nome,
     string Email

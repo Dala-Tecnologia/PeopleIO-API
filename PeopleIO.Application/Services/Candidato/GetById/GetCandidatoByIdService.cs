@@ -1,17 +1,17 @@
-﻿using PeopleIO.Application.Services.Colaborador.GetAll;
+﻿using PeopleIO.Application.Services.Candidato.GetAll;
 using PeopleIO.Domain.Contract;
 
-namespace PeopleIO.Application.Services.Colaborador.GetById;
+namespace PeopleIO.Application.Services.Candidato.GetById;
 
-public class GetColaboradorByIdService : IGetColaboradorByIdService
+public class GetCandidatoByIdService : IGetCandidatoByIdService
 {
-    private readonly IColaboradorRepository _repository;
-    public GetColaboradorByIdService(IColaboradorRepository repository)
+    private readonly ICandidatoRepository _repository;
+    public GetCandidatoByIdService(ICandidatoRepository repository)
     {
         _repository =  repository;
     }
 
-    public async Task<Domain.Entity.Colaborador> Execute(Guid id)
+    public async Task<Domain.Entity.Candidato> Execute(Guid id)
     {
         if (id == Guid.Empty)
             throw new ArgumentException("ID inválido.");

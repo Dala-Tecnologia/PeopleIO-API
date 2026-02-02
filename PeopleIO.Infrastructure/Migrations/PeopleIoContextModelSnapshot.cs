@@ -22,7 +22,7 @@ namespace PeopleIO.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("PeopleIO.Domain.Entity.Colaborador", b =>
+            modelBuilder.Entity("PeopleIO.Domain.Entity.Candidato", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -148,14 +148,14 @@ namespace PeopleIO.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("colaborador", (string)null);
+                    b.ToTable("candidato", (string)null);
                 });
 
-            modelBuilder.Entity("PeopleIO.Domain.Entity.Colaborador", b =>
+            modelBuilder.Entity("PeopleIO.Domain.Entity.Candidato", b =>
                 {
                     b.OwnsOne("PeopleIO.Domain.Entity.Documento", "ArquivoCNH", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<DateTime>("DataUpload")
@@ -177,17 +177,17 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ArquivoCNHURL");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.OwnsOne("PeopleIO.Domain.Entity.Documento", "ArquivoCPF", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<DateTime>("DataUpload")
@@ -209,17 +209,17 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ArquivoCPFURL");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.OwnsOne("PeopleIO.Domain.Entity.Documento", "ArquivoComprovanteResidencia", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<DateTime>("DataUpload")
@@ -241,17 +241,17 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ArquivoResidenciaURL");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.OwnsOne("PeopleIO.Domain.Entity.Documento", "ArquivoRG", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<DateTime>("DataUpload")
@@ -273,17 +273,17 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ArquivoRGURL");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.OwnsOne("PeopleIO.Domain.Entity.Documento", "Curriculo", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<DateTime>("DataUpload")
@@ -305,17 +305,17 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ArquivoCurriculoURL");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.OwnsOne("PeopleIO.Domain.Entity.Endereco", "Endereco", b1 =>
                         {
-                            b1.Property<Guid>("ColaboradorId")
+                            b1.Property<Guid>("CandidatoId")
                                 .HasColumnType("uuid");
 
                             b1.Property<string>("Bairro")
@@ -348,12 +348,12 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("Rua");
 
-                            b1.HasKey("ColaboradorId");
+                            b1.HasKey("CandidatoId");
 
-                            b1.ToTable("colaborador");
+                            b1.ToTable("candidato");
 
                             b1.WithOwner()
-                                .HasForeignKey("ColaboradorId");
+                                .HasForeignKey("CandidatoId");
                         });
 
                     b.Navigation("ArquivoCNH");
