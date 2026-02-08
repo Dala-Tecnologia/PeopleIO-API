@@ -18,6 +18,7 @@ public static class DependencyInjectionExtension
     private static void AddRepository(this IServiceCollection services)
     {
         services.AddScoped<ICandidatoRepository, CandidatoRepository>();
+        services.AddScoped(typeof(ICRUDRepository<>), typeof(CRUDRepository<>));
         
     }
     private static void AddDatabase(IServiceCollection services, IConfiguration configuration)
