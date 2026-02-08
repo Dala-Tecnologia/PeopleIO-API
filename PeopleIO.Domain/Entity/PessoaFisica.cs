@@ -1,10 +1,9 @@
 ﻿using System;
 using PeopleIO.Domain.Entity;
-using PeopleIO.Domain.Enum;
+using PeopleIO.Domain.Enums;
 
-public abstract class Pessoa
+public abstract class PessoaFisica : BaseEntity
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
     public string Nome { get; set; } = default!;
     public string? NomeSocial { get; set; }
     public string CPF { get; set; } = default!;

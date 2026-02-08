@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PeopleIO.Infrastructure.Context;
@@ -11,9 +12,11 @@ using PeopleIO.Infrastructure.Context;
 namespace PeopleIO.Infrastructure.Migrations
 {
     [DbContext(typeof(PeopleIoContext))]
-    partial class PeopleIoContextModelSnapshot : ModelSnapshot
+    [Migration("20260202231823_RenameCollaboradorToCandidato")]
+    partial class RenameCollaboradorToCandidato
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,14 +75,7 @@ namespace PeopleIO.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("DataAdmissao")
+                    b.Property<DateTime>("DataAdmissao")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("DataDemissao")
@@ -133,9 +129,6 @@ namespace PeopleIO.Infrastructure.Migrations
                     b.Property<string>("NomeSocial")
                         .HasColumnType("text");
 
-                    b.Property<bool>("PrimeiroLogin")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Sexo")
                         .IsRequired()
                         .HasColumnType("text");
@@ -156,77 +149,9 @@ namespace PeopleIO.Infrastructure.Migrations
                     b.Property<string>("TituloZona")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.ToTable("candidato", (string)null);
-                });
-
-            modelBuilder.Entity("PeopleIO.Domain.Entity.Experiencia", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Atuacao")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("CandidatoId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DataInicio")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DataTermino")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Funcao")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Local")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeEmpresa")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TipoContrato")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("TrabalhandoAtualmente")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CandidatoId");
-
-                    b.ToTable("experiencia", (string)null);
                 });
 
             modelBuilder.Entity("PeopleIO.Domain.Entity.Candidato", b =>
@@ -391,38 +316,6 @@ namespace PeopleIO.Infrastructure.Migrations
                                 .HasForeignKey("CandidatoId");
                         });
 
-                    b.OwnsOne("PeopleIO.Domain.Entity.Documento", "FotoUrl", b1 =>
-                        {
-                            b1.Property<Guid>("CandidatoId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<DateTime>("DataUpload")
-                                .HasColumnType("timestamp with time zone")
-                                .HasColumnName("FotoDataUpload");
-
-                            b1.Property<string>("NomeArquivo")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("NomeFoto");
-
-                            b1.Property<string>("TipoMime")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("FotoTipoMime");
-
-                            b1.Property<string>("Url")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("FotoURL");
-
-                            b1.HasKey("CandidatoId");
-
-                            b1.ToTable("candidato");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidatoId");
-                        });
-
                     b.OwnsOne("PeopleIO.Domain.Entity.Endereco", "Endereco", b1 =>
                         {
                             b1.Property<Guid>("CandidatoId")
@@ -478,24 +371,6 @@ namespace PeopleIO.Infrastructure.Migrations
 
                     b.Navigation("Endereco")
                         .IsRequired();
-
-                    b.Navigation("FotoUrl");
-                });
-
-            modelBuilder.Entity("PeopleIO.Domain.Entity.Experiencia", b =>
-                {
-                    b.HasOne("PeopleIO.Domain.Entity.Candidato", "Candidato")
-                        .WithMany("Experiencias")
-                        .HasForeignKey("CandidatoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Candidato");
-                });
-
-            modelBuilder.Entity("PeopleIO.Domain.Entity.Candidato", b =>
-                {
-                    b.Navigation("Experiencias");
                 });
 #pragma warning restore 612, 618
         }

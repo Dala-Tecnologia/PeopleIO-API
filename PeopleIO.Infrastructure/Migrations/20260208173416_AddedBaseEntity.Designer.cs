@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PeopleIO.Infrastructure.Context;
@@ -11,9 +12,11 @@ using PeopleIO.Infrastructure.Context;
 namespace PeopleIO.Infrastructure.Migrations
 {
     [DbContext(typeof(PeopleIoContext))]
-    partial class PeopleIoContextModelSnapshot : ModelSnapshot
+    [Migration("20260208173416_AddedBaseEntity")]
+    partial class AddedBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,13 +183,6 @@ namespace PeopleIO.Infrastructure.Migrations
                     b.Property<Guid>("CandidatoId")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("timestamp with time zone");
 
@@ -215,12 +211,6 @@ namespace PeopleIO.Infrastructure.Migrations
 
                     b.Property<bool>("TrabalhandoAtualmente")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

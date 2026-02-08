@@ -12,6 +12,18 @@ public class PeopleIoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Experiencia>(entity =>
+        {
+            entity.ToTable("experiencia");
+
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.TipoContrato)
+                .HasConversion<string>();
+
+            entity.Property(e => e.Atuacao)
+                .HasConversion<string>();
+        });
         
         modelBuilder.Entity<Candidato>(entity =>
         {
@@ -72,6 +84,13 @@ public class PeopleIoContext : DbContext
                 doc.Property(d => d.Url).HasColumnName("ArquivoCurriculoURL");
                 doc.Property(d => d.DataUpload).HasColumnName("ArquivoCurriculoDataUpload");
                 doc.Property(d => d.TipoMime).HasColumnName("ArquivoCurriculoTipoMime");
+            });
+            entity.OwnsOne(c => c.FotoUrl, doc =>
+            {
+                doc.Property(d => d.NomeArquivo).HasColumnName("NomeFoto");
+                doc.Property(d => d.Url).HasColumnName("FotoURL");
+                doc.Property(d => d.DataUpload).HasColumnName("FotoDataUpload");
+                doc.Property(d => d.TipoMime).HasColumnName("FotoTipoMime");
             });
         });
     }
