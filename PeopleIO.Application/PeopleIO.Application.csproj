@@ -7,11 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Azure.Storage.Blobs" Version="12.26.0" />
       <PackageReference Include="FluentValidation" Version="12.1.0" />
       <PackageReference Include="Mapster" Version="7.4.0" />
       <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
-      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
     </ItemGroup>
 
@@ -19,6 +22,13 @@
       <ProjectReference Include="..\PeopleIO.Communication\PeopleIO.Communication.csproj" />
       <ProjectReference Include="..\PeopleIO.Domain\PeopleIO.Domain.csproj" />
       <ProjectReference Include="..\PeopleIO.Exceptions\PeopleIO.Exceptions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Experiencia\DeleteAllByCandidatoId\" />
+      <Folder Include="Services\Experiencia\GetAllByCandidatoId\" />
+      <Folder Include="Services\Experiencia\GetById\" />
+      <Folder Include="Services\Experiencia\Register\" />
     </ItemGroup>
 
 </Project>

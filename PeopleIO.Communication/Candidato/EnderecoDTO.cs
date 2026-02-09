@@ -1,6 +1,6 @@
 ﻿namespace PeopleIO.Communication;
 
-public record EnderecoRequest(
+public record EnderecoDTO(
     string Rua,
     string Numero,
     string Bairro,

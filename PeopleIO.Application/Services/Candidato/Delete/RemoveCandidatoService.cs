@@ -4,19 +4,19 @@ namespace PeopleIO.Application.Services.Candidato.Delete;
 
 public class RemoveCandidatoService : IRemoveCandidatoService
 {
-    private readonly ICandidatoRepository _candidatoRepository;
-    public RemoveCandidatoService(ICandidatoRepository candidatoRepository)
+    private readonly ICRUDRepository<Domain.Entity.Candidato> _ctx;
+    public RemoveCandidatoService(ICRUDRepository<Domain.Entity.Candidato> ctx)
     {
-        _candidatoRepository = candidatoRepository;
+        _ctx = ctx;
     }
 
-    public async Task<bool> Execute(Guid id)
+    public async Task<bool> Execute(Guid id, CancellationToken ct)
     {
-        var colaborador = await _candidatoRepository.GetByIdAsync(id);
+        var colaborador = await _ctx.GetByIdAsync(id, ct);
         if (colaborador is null)
             return false;
 
-        await _candidatoRepository.DeleteAsync(id);
+        await _ctx.DeleteAsync(id, ct);
         return true;
 
     }

@@ -4,8 +4,9 @@ using PeopleIO.Application.Services;
 using PeopleIO.Application.Services.Candidato.GetAll;
 using PeopleIO.Application.Services.Candidato.GetById;
 using PeopleIO.Application.Services.Candidato.Delete;
-using PeopleIO.Application.Services.Candidato.GetAll;
 using PeopleIO.Application.Services.Candidato.Register;
+using PeopleIO.Application.Services.Candidato.Update;
+using PeopleIO.Application.Services.Experiencia.Delete;
 
 namespace PeopleIO.Application;
 
@@ -24,5 +25,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllCandidatosService, GetAllCandidatosService>();
         services.AddScoped<IGetCandidatoByIdService, GetCandidatoByIdService>();
         services.AddScoped<IRemoveCandidatoService, RemoveCandidatoService>();
+        services.AddScoped<IUpdateCandidatoService, UpdateCandidatoService>();
+        
+        services.AddScoped<IRemoveExperienciaService, RemoveExperienciaService>();
     }
 }

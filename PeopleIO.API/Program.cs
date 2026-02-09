@@ -111,5 +111,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapCandidatoEndpoints();
+app.MapExperienciaEndpoints();
 
 app.Run();

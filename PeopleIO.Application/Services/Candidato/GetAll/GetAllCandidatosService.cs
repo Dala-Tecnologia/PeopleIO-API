@@ -6,16 +6,16 @@ namespace PeopleIO.Application.Services.Candidato.GetAll;
 
 public class GetAllCandidatosService : IGetAllCandidatosService
 {
-    private readonly ICandidatoRepository  _candidatoRepository;
+    private readonly ICRUDRepository<Domain.Entity.Candidato> _ctx;
 
-    public GetAllCandidatosService(ICandidatoRepository candidatoRepository)
+    public GetAllCandidatosService(ICRUDRepository<Domain.Entity.Candidato> ctx)
     {
-        _candidatoRepository = candidatoRepository;
+        _ctx = ctx;
     }
 
-    public Result<IEnumerable<Domain.Entity.Candidato>> Execute()
+    public async Task<Result<IEnumerable<Domain.Entity.Candidato>>> Execute(CancellationToken ct)
     {
-        var colaboradores = _candidatoRepository.GetAll();
+        var colaboradores = await _ctx.GetAllAsync(ct, c => c.Experiencias!);
         return Result<IEnumerable<Domain.Entity.Candidato>>.Success(colaboradores);
     }
 }

@@ -5,5 +5,5 @@ namespace PeopleIO.Application.Services.Candidato.Register;
 
 public interface IRegisterCandidatoService
 {
-    Task<Result<CandidatoResponse>> ExecuteAsync(RequestRegisterCandidato request);
+    Task<Result<CandidatoResponse>> ExecuteAsync(RequestRegisterCandidato request, CancellationToken ct);
 }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PeopleIO.Domain.Enum;
+namespace PeopleIO.Domain.Enums;
 
 public enum Sexo
 {

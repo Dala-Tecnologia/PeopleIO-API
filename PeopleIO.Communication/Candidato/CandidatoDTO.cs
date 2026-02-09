@@ -3,7 +3,7 @@ using PeopleIO.Domain.Enums;
 
 namespace PeopleIO.Communication;
 
-public record RequestUpdateCandidato(
+public record CandidatoDTO(
     string Nome,
     string? NomeSocial,
     string CPF,
@@ -97,9 +97,9 @@ public record RequestUpdateCandidato(
 
 public static class CandidatoExtensions
 {
-    public static RequestUpdateCandidato ToDto(this Candidato entity)
+    public static CandidatoDTO ToDto(this Candidato entity)
     {
-        return new RequestUpdateCandidato(
+        return new CandidatoDTO(
             entity.Nome,
             entity.NomeSocial,
             entity.CPF,
@@ -145,7 +145,7 @@ public static class CandidatoExtensions
         );
     }
 
-    public static void UpdateFrom(this Candidato entity, RequestUpdateCandidato request)
+    public static void UpdateFrom(this Candidato entity, CandidatoDTO request)
     {
         entity.Nome = request.Nome;
         entity.NomeSocial = request.NomeSocial;

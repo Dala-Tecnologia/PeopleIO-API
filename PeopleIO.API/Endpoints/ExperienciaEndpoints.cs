@@ -1,22 +1,16 @@
-﻿using Azure.Identity;
-using PeopleIO.Application.Services.Candidato.GetById;
-using PeopleIO.Application.Services.Candidato.Delete;
-using PeopleIO.Application.Services.Candidato.GetAll;
-using PeopleIO.Application.Services.Candidato.Register;
-using PeopleIO.Application.Services.Candidato.Update;
-using PeopleIO.Communication;
+﻿using PeopleIO.Application.Services.Experiencia.Delete;
 
 namespace PeapleIO.API.Endpoints;
 
-public static class CandidatoEndpoints
+public static class ExperienciaEndpoints
 {
-    public static void MapCandidatoEndpoints(this IEndpointRouteBuilder app)
+    public static void MapExperienciaEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/v1/candidato")
-            .WithTags("Candidato")
+        var group = app.MapGroup("/api/v1/experiencia")
+            .WithTags("Experiencia")
             .RequireAuthorization();
 
-        group.MapGet("", async (IGetAllCandidatosService service, CancellationToken ct) => 
+        /*group.MapGet("", async (IGetAllCandidatosService service, CancellationToken ct) => 
             Results.Ok(await service.Execute(ct)));
 
         group.MapGet("/{id:guid}", async (Guid id, IGetCandidatoByIdService service, CancellationToken ct) =>
@@ -38,7 +32,7 @@ public static class CandidatoEndpoints
         })
         .WithName("CreateCandidato");
         
-        group.MapPut("/{id:guid}", async (Guid id, RequestUpdateCandidato request, IUpdateCandidatoService service, HttpContext context, CancellationToken ct) => 
+        group.MapPut("/{id:guid}", async (Guid id, CandidatoDTO request, IUpdateCandidatoService service, HttpContext context, CancellationToken ct) => 
         {
             var result = await service.ExecuteAsync(id, request, context.User.Identity?.Name ?? "System", ct);
             if (result.Result is Microsoft.AspNetCore.Http.HttpResults.NotFound)
@@ -47,9 +41,9 @@ public static class CandidatoEndpoints
             }
             return Results.Ok();
         })
-        .WithName("UpdateCandidato");
+        .WithName("UpdateCandidato");*/
         
-        group.MapDelete("/{id:guid}", async (Guid id, IRemoveCandidatoService service, CancellationToken ct) =>
+        group.MapDelete("/{id:guid}", async (Guid id, IRemoveExperienciaService service, CancellationToken ct) =>
         {
             try
             {
@@ -58,9 +52,9 @@ public static class CandidatoEndpoints
             }
             catch (Exception ex)
             {
-                return Results.Problem("Erro ao remover candidato: " + ex.Message);
+                return Results.Problem("Erro ao remover experiencia: " + ex.Message);
             }
         })
-        .WithName("DeleteCandidato");
+        .WithName("DeleteExperiencia");
     }
 }

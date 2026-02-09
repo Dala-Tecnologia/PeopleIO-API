@@ -2,5 +2,5 @@
 
 public interface IRemoveCandidatoService
 {
-    Task<bool> Execute(Guid id);
+    Task<bool> Execute(Guid id, CancellationToken ct);
 }

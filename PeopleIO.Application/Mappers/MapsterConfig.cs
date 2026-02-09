@@ -8,7 +8,7 @@ public static class MapsterConfig
 {
     public static void RegisterMappings()
     {
-        TypeAdapterConfig<EnderecoRequest, Endereco>
+        TypeAdapterConfig<EnderecoDTO, Endereco>
             .NewConfig();
         
         TypeAdapterConfig<RequestRegisterCandidato, Candidato>

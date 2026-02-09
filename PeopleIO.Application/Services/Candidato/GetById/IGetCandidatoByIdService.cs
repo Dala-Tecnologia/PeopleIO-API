@@ -2,5 +2,5 @@
 
 public interface IGetCandidatoByIdService
 {
-    Task<Domain.Entity.Candidato> Execute(Guid id);
+    Task<Domain.Entity.Candidato> Execute(Guid id, CancellationToken ct);
 }

@@ -1,10 +1,10 @@
-﻿using PeopleIO.Domain.Enums;
+﻿using System.Text.Json.Serialization;
+using PeopleIO.Domain.Enums;
 
 namespace PeopleIO.Domain.Entity;
 
-public class Experiencia
+public class Experiencia : BaseEntity
 {
-    public int Id { get; set; }
     public string NomeEmpresa { get; set; } = string.Empty;
     public TipoContrato TipoContrato { get; set; }
     public string Funcao { get; set; } = string.Empty;
@@ -14,4 +14,7 @@ public class Experiencia
     public string Local { get; set; } = string.Empty;
     public TipoAtuacao Atuacao { get; set; }
     public string Descricao { get; set; } = string.Empty;
+    public Guid CandidatoId { get; set; }
+    [JsonIgnore]
+    public Candidato? Candidato { get; set; }
 }
