@@ -7,7 +7,7 @@ public record RequestRegisterCandidato(
     DateTime DataNascimento,
     string Email,
     string? Telefone,
-    EnderecoRequest Endereco,
+    EnderecoDTO Endereco,
     string? Cargo,
     string? Departamento,
     DateTime? DataAdmissao,
@@ -34,9 +34,11 @@ public record RequestRegisterCandidato(
     string EstadoCivil,
     string Naturalidade,
     string Nacionalidade, 
+    List<ExperienciaDTO>? Experiencias,
     DocumentoDTO? ArquivoRG,
     DocumentoDTO? ArquivoCNH,
     DocumentoDTO? ArquivoCPF,
     DocumentoDTO? ArquivoComprovanteResidencia,
-    DocumentoDTO? Curriculo
+    DocumentoDTO? Curriculo,
+    DocumentoDTO? FotoUrl
 );

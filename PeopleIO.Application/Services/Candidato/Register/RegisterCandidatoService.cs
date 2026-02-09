@@ -8,13 +8,16 @@ namespace PeopleIO.Application.Services.Candidato.Register;
 public class RegisterCandidatoService : IRegisterCandidatoService
 {
     private readonly ICandidatoRepository _candidatoRepository;
+    private readonly ICRUDRepository<Domain.Entity.Candidato> _crudRepository;
 
-    public RegisterCandidatoService(ICandidatoRepository candidatoRepository)
+    public RegisterCandidatoService(ICandidatoRepository candidatoRepository, 
+        ICRUDRepository<Domain.Entity.Candidato> crudRepository)
     {
         _candidatoRepository = candidatoRepository;
+        _crudRepository = crudRepository;
     }
 
-    public async Task<Result<CandidatoResponse>> ExecuteAsync(RequestRegisterCandidato request)
+    public async Task<Result<CandidatoResponse>> ExecuteAsync(RequestRegisterCandidato request, CancellationToken ct)
     {
         Validate(request);
         
@@ -23,7 +26,7 @@ public class RegisterCandidatoService : IRegisterCandidatoService
         
         var colaborador = request.Adapt<Domain.Entity.Candidato>();
         
-        await _candidatoRepository.RegisterAsync(colaborador);
+        await _crudRepository.AddAsync(colaborador, ct);
         
         var response = new CandidatoResponse(
             colaborador.Id, 
