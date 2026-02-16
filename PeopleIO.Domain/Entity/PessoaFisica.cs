@@ -12,10 +12,10 @@ public abstract class PessoaFisica : BaseEntity
     public string Telefone { get; set; } = default!;
     public Endereco Endereco { get; set; } = default!;
     
-    public string IdentidadeNumero { get; set; } = default!;
-    public string IdentidadeOrgaoEmissor { get; set; } = default!;
-    public string IdentidadeUF { get; set; } = default!;
-    public DateTime IdentidadeDataEmissao { get; set; }
+    public string? IdentidadeNumero { get; set; } = default!;
+    public string? IdentidadeOrgaoEmissor { get; set; } = default!;
+    public string? IdentidadeUF { get; set; } = default!;
+    public DateTime? IdentidadeDataEmissao { get; set; }
 
     public string CTPSNumero { get; set; } = default!;
     public string CTPSSerie { get; set; } = default!;
