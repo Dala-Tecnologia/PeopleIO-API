@@ -20,7 +20,8 @@ public static class DependencyInjectionExtension
     private static void AddServices(this IServiceCollection services)
     {
         MapsterConfig.RegisterMappings();
-        services.AddSingleton<BlobStorageService>();
+        services.AddSingleton<IBlobStorageService, BlobStorageService>();
+        services.AddScoped<IDocumentValidationService, DocumentValidationService>();
         services.AddScoped<IRegisterCandidatoService, RegisterCandidatoService>();
         services.AddScoped<IGetAllCandidatosService, GetAllCandidatosService>();
         services.AddScoped<IGetCandidatoByIdService, GetCandidatoByIdService>();

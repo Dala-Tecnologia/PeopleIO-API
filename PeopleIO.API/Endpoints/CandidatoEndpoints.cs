@@ -41,11 +41,7 @@ public static class CandidatoEndpoints
         group.MapPut("/{id:guid}", async (Guid id, CandidatoDTO request, IUpdateCandidatoService service, HttpContext context, CancellationToken ct) => 
         {
             var result = await service.ExecuteAsync(id, request, context.User.Identity?.Name ?? "System", ct);
-            if (result.Result is Microsoft.AspNetCore.Http.HttpResults.NotFound)
-            {
-                return Results.NotFound();
-            }
-            return Results.Ok();
+            return result.Result;
         })
         .WithName("UpdateCandidato");
         

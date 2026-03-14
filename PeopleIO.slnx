@@ -5,4 +5,5 @@
   <Project Path="PeopleIO.Domain/PeopleIO.Domain.csproj" />
   <Project Path="PeopleIO.Exceptions/PeopleIO.Exceptions.csproj" />
   <Project Path="PeopleIO.Infrastructure/PeopleIO.Infrastructure.csproj" />
+  <Project Path="PeopleIO.Tests/PeopleIO.Tests.csproj" />
 </Solution>
