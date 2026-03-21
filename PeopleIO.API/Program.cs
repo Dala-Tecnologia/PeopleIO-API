@@ -24,9 +24,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Configuration.AddAzureKeyVault(
-    new Uri(builder.Configuration["KeyVault:Url"]!),
-    new DefaultAzureCredential());
+var kvUrl = builder.Configuration["KeyVault:Url"];
+if (!string.IsNullOrEmpty(kvUrl))
+{
+    builder.Configuration.AddAzureKeyVault(new Uri(kvUrl), new DefaultAzureCredential());
+}
 
 // DEBUG TEMPORÁRIO - remover após confirmar os valores
 Console.WriteLine($"[DEBUG] DI Endpoint: '{builder.Configuration["AzureDocumentIntelligence:Endpoint"]}'");
