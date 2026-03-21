@@ -6,6 +6,6 @@ namespace PeopleIO.Application.Services.Candidato.Update;
 
 public interface IUpdateCandidatoService
 {
-    Task<Results<Ok, NotFound>> ExecuteAsync(Guid id, CandidatoDTO request, 
+    Task<Results<Ok, NotFound, BadRequest<string>>> ExecuteAsync(Guid id, CandidatoDTO request,
         string userName, CancellationToken ct);
 }

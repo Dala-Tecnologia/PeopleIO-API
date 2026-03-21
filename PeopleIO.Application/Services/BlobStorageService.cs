@@ -14,7 +14,8 @@ public class BlobStorageService : IBlobStorageService
         var connectionString = config["BlobStorageConnectionString"]; //"DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net"
         var containerName = config["BlobStorageContainerName"]; //"documentos"
 
-        _containerClient = new BlobContainerClient(connectionString, containerName);
+        var serviceClient = new BlobServiceClient(connectionString);
+        _containerClient = serviceClient.GetBlobContainerClient(containerName);
         _containerClient.CreateIfNotExists();
     }
 
@@ -32,4 +33,9 @@ public class BlobStorageService : IBlobStorageService
         return blobClient.Uri.ToString();
     }
 
+    public async Task<Stream> GetBlobStreamAsync(string blobName)
+    {
+        var blobClient = _containerClient.GetBlobClient(blobName);
+        return await blobClient.OpenReadAsync();
+    }
 }

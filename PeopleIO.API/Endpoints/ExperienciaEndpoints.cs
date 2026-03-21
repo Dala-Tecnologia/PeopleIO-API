@@ -1,6 +1,6 @@
 ﻿using PeopleIO.Application.Services.Experiencia.Delete;
 
-namespace PeapleIO.API.Endpoints;
+namespace PeopleIO.API.Endpoints;
 
 public static class ExperienciaEndpoints
 {

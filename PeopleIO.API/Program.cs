@@ -1,8 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Text.Json.Serialization;
 using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using PeapleIO.API.Endpoints;
+using PeopleIO.API.Endpoints;
 using PeopleIO.Application;
 using PeopleIO.Infrastructure;
 using Scalar.AspNetCore;
@@ -27,8 +28,12 @@ builder.Configuration.AddAzureKeyVault(
     new Uri(builder.Configuration["KeyVault:Url"]!),
     new DefaultAzureCredential());
 
+// DEBUG TEMPORÁRIO - remover após confirmar os valores
+Console.WriteLine($"[DEBUG] DI Endpoint: '{builder.Configuration["AzureDocumentIntelligence:Endpoint"]}'");
+Console.WriteLine($"[DEBUG] DI ApiKey: '{builder.Configuration["AzureDocumentIntelligence:ApiKey"]}'");
+
 builder.Services.AddInfraestructure(builder.Configuration);
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddOpenApi();
 
 JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
@@ -96,6 +101,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorizationBuilder();
 
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -112,5 +122,6 @@ app.UseAuthorization();
 
 app.MapCandidatoEndpoints();
 app.MapExperienciaEndpoints();
+app.MapDocumentoEndpoints();
 
 app.Run();
