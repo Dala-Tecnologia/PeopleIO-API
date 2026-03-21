@@ -69,13 +69,13 @@ public class RegisterCandidatoServiceTests
     private RequestRegisterCandidato CreateValidRequest()
     {
         return new RequestRegisterCandidato(
-            "Nome Teste", 
-            null, 
-            "123.456.789-00", 
-            DateTime.Now.AddYears(-20), 
-            "test@test.com", 
+            "Nome Teste",
+            null,
+            "12345678900",
+            DateTime.Now.AddYears(-20),
+            "test@test.com",
             "11999999999",
-            new EnderecoDTO("Rua Teste", 123, "Bairro Teste", "Cidade Teste", "SP", "12345-678"),
+            new EnderecoDTO("Rua Teste", "123", "Bairro Teste", "Cidade Teste", "SP", "12345678"),
             "Desenvolvedor", 
             "TI", 
             DateTime.Now, 

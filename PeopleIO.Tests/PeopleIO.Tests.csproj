@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="xunit" Version="2.6.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,12 +22,21 @@
     </PackageReference>
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Xunit.SkippableFact" Version="1.5.61" />
+    <PackageReference Include="PdfSharpCore" Version="1.3.65" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PeopleIO.Application\PeopleIO.Application.csproj" />
     <ProjectReference Include="..\PeopleIO.Domain\PeopleIO.Domain.csproj" />
     <ProjectReference Include="..\PeopleIO.Communication\PeopleIO.Communication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.IntegrationTests.json" Condition="Exists('appsettings.IntegrationTests.json')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Folder Include="TestDocuments\" />
   </ItemGroup>
 
 </Project>

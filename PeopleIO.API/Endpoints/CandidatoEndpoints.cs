@@ -6,7 +6,7 @@ using PeopleIO.Application.Services.Candidato.Register;
 using PeopleIO.Application.Services.Candidato.Update;
 using PeopleIO.Communication;
 
-namespace PeapleIO.API.Endpoints;
+namespace PeopleIO.API.Endpoints;
 
 public static class CandidatoEndpoints
 {
