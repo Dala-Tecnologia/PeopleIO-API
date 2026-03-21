@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Linq;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Logging;
 using PeopleIO.Communication;
@@ -69,6 +70,6 @@ public class UpdateCandidatoService : IUpdateCandidatoService
 
     private string GetBlobNameFromUrl(string url)
     {
-        return new Uri(url).Segments.Last();
+        return string.Concat(new Uri(url).Segments.Skip(2));
     }
 }
