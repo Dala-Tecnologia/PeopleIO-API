@@ -31,8 +31,12 @@ if (!string.IsNullOrEmpty(kvUrl))
 }
 
 // DEBUG TEMPORÁRIO - remover após confirmar os valores
+Console.WriteLine($"[DEBUG] KeyVault URL: '{builder.Configuration["KeyVault:Url"]}'");
+Console.WriteLine($"[DEBUG] AzureAd:Audience: '{builder.Configuration["AzureAd:Audience"]}'");
+Console.WriteLine($"[DEBUG] AzureAd:TenantId: '{builder.Configuration["AzureAd:TenantId"]}'");
 Console.WriteLine($"[DEBUG] DI Endpoint: '{builder.Configuration["AzureDocumentIntelligence:Endpoint"]}'");
 Console.WriteLine($"[DEBUG] DI ApiKey: '{builder.Configuration["AzureDocumentIntelligence:ApiKey"]}'");
+Console.WriteLine($"[DEBUG] ConnectionString: '{(builder.Configuration["ConnectionStrings:PostgreSQL"] != null ? "OK (não nulo)" : "NULO")}'");
 
 builder.Services.AddInfraestructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
