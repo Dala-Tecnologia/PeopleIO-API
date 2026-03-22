@@ -7,7 +7,6 @@
 .env
 
 # Arquivos com segredos locais — nunca commitar
-appsettings.Development.json
 appsettings.IntegrationTests.json
 
 # User-specific files
